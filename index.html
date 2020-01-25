@@ -33,5 +33,47 @@ Local code changes can not be tested as gitlab-runner always fetches latest code
 
 
 Reference :
+---
+layout: default
+title: Home
+---
+<h3>{{ "How to test GitLab CI locally." }}</h3>
+This is common use case where a developer wants to test his changes against a GitLab pipe-line without pushing changes to repository so that any potential failure does not bother everybody else in the team.
+
+GitLab Runner can be used to test the CI pipeline defined in gitlab-ct.yml locally.
+
+Can be done in following simple steps :
+
+<ol>
+    <li>
+        Install gitlab-runner, For Debian/Ubuntu/Mint do it as follows :
+        curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+        sudo apt-get install gitlab-runner
+        My gitlab-runner version is 12.4.1
+
+    </li>
+
+    <li>
+        Register gitlab-runner with GitLab server: Not Needed
+    </li>
+
+    <li>
+        Test GitLab CI
+        Go to the directory where .gitlab-ci.yml file is kept, then :
+        To run specific stage just give name of the stage at the end gitlab-runner exec docker build docker is the name of executor here.
+    </li>
+</ol>
+
+
+
+<h2>Drawbacks :</h2>
+
+As of gitlab-runner version 12.4.1 exec can only run one job not full pipeline.
+Local code changes can not be tested as gitlab-runner always fetches latest code from GitLab server although there are feature proposals in progress: https://gitlab.com/gitlab-org/gitlab-runner/issues/1359  https://gitlab.com/gitlab-org/gitlab-runner/issues/2797 
+
+
+Reference :
+<a href="https://docs.gitlab.com/runner/"></a>
+
 
 https://docs.gitlab.com/runner/ 
