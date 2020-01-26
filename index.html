@@ -35,3 +35,23 @@ Local code changes can not be tested as gitlab-runner always fetches latest code
 
 <h4>References </h4>
 <a href="https://docs.gitlab.com/runner/">https://docs.gitlab.com/runner/</a>
+
+<h3>{{ "docker login error - http: server gave HTTP response to HTTPS client." }}</h3>
+<p>
+    Error :
+    docker login &ltcontainer.registry.server&gt:4567
+    Username: username
+    Password: ********
+    Error response from daemon: Get https://&ltcontainer.registry.server&gt:4567/v2/: http: server gave HTTP response to HTTPS client.
+</p>
+To resolve the error
+
+<ol>
+    <li>
+        Create or Edit following file: /etc/docker/daemon.json , Add following line to it :
+        { "insecure-registries":["myregistry.example.com:5000"] }
+    </li>
+    <li>
+        Restart docker daemon: sudo service docker restart
+    </li>
+</ol>
